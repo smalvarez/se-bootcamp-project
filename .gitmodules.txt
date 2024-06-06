@@ -1,0 +1,3 @@
+[submodule "se-bootcamp-project"]
+  path = se-bootcamp-project
+  url = https://projects.stevenalvarez.me/
