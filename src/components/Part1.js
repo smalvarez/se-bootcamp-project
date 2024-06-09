@@ -4,11 +4,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css"; // Updated path to the CSS file
 
 function Part1() {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [navMenuVisible, setNavMenuVisible] = useState(false);
+  const [modalState, setModalState] = useState({
+    currentModal: null,
+    navMenuVisible: false,
+  });
 
   const toggleMenu = () => {
-    setNavMenuVisible(!navMenuVisible);
+    setModalState((prevState) => ({
+      ...prevState,
+      navMenuVisible: !prevState.navMenuVisible,
+    }));
+  };
+
+  const openModal = (modalId) => {
+    setModalState((prevState) => ({
+      ...prevState,
+      currentModal: modalId,
+    }));
+  };
+
+  const closeModal = () => {
+    setModalState((prevState) => ({
+      ...prevState,
+      currentModal: null,
+    }));
   };
 
   return (
@@ -18,17 +37,17 @@ function Part1() {
           <h2>Part 1</h2>
           <div className="position-relative">
             <img
-              src="images/img1.jpg"
+              src={process.env.PUBLIC_URL + "/images/img1.jpg"}
               className="img-fluid rounded"
               alt="Studio workspace"
             />
             <div className="text-studio">STUDIO</div>
             <div className="text-work-hard">WE WORK HARD, WE PLAY HARD</div>
             <div className="button-container">
-              <Button className="mr-2" onClick={() => setShowLoginModal(true)}>
+              <Button className="mr-2" onClick={() => openModal("loginModal")}>
                 Login
               </Button>
-              <Dropdown show={navMenuVisible} onToggle={toggleMenu}>
+              <Dropdown show={modalState.navMenuVisible} onToggle={toggleMenu}>
                 <Dropdown.Toggle variant="secondary" id="burgerButton">
                   ☰
                 </Dropdown.Toggle>
@@ -44,7 +63,10 @@ function Part1() {
       </main>
 
       {/* Login Modal */}
-      <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
+      <Modal
+        show={modalState.currentModal === "loginModal"}
+        onHide={closeModal}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
