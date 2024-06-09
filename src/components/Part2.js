@@ -19,9 +19,9 @@ function Part2() {
     modal5: "",
     modal6: "",
   });
-
   const openModal = (modalId) => {
-    setShowModal({ ...showModal, [modalId]: true });
+    const modal = new window.bootstrap.Modal(document.getElementById(modalId));
+    modal.show();
   };
 
   const closeModal = (modalId) => {
