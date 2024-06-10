@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/part2.css"; // Updated path to the CSS file
+import "../styles/part2.css";
 
 function Part1() {
   const [modalState, setModalState] = useState({
     currentModal: null,
     navMenuVisible: false,
   });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const toggleMenu = () => {
     setModalState((prevState) => ({
@@ -28,6 +30,32 @@ function Part1() {
       ...prevState,
       currentModal: null,
     }));
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        alert("Login successful");
+        closeModal();
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -62,7 +90,6 @@ function Part1() {
         </section>
       </main>
 
-      {/* Login Modal */}
       <Modal
         show={modalState.currentModal === "loginModal"}
         onHide={closeModal}
@@ -71,12 +98,22 @@ function Part1() {
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleLogin}>
             <Form.Group>
-              <Form.Control type="email" placeholder="Email Address*" />
+              <Form.Control
+                type="email"
+                placeholder="Email Address*"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </Form.Group>
             <Form.Group>
-              <Form.Control type="password" placeholder="Password*" />
+              <Form.Control
+                type="password"
+                placeholder="Password*"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </Form.Group>
             <Button variant="primary" type="submit" block>
               LOGIN

@@ -1,18 +1,7 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const { Pool, Client } = require("pg");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const { Client } = require("pg");
 const fs = require("fs");
-require("dotenv").config();
 
-const app = express();
-const port = process.env.PORT || 3001;
-const dbName = "login_db";
-const sqlFilePath = "login_table.sql";
-
-// Initial connection details
+// Connection details for the initial connection
 const initialClient = new Client({
   user: "postgres",
   host: "localhost",
@@ -20,8 +9,10 @@ const initialClient = new Client({
   port: 5432,
 });
 
-// Connect initial client
 initialClient.connect();
+
+const dbName = "login_db";
+const sqlFilePath = "login_table.sql";
 
 // Function to execute SQL file
 function executeSqlFile(client, filePath) {
@@ -114,44 +105,3 @@ initialClient.query(
     }
   }
 );
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-app.use(cors());
-app.use(bodyParser.json());
-
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const result = await pool.query(
-      "SELECT * FROM login_table WHERE email = $1",
-      [email]
-    );
-    const user = result.rows[0];
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email or password" });
-    }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return res.status(401).json({ message: "Invalid email or password" });
-    }
-
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    res.json({ token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
