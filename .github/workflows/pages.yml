@@ -1,4 +1,4 @@
-name: Build and Deploy Jekyll Site
+echo 'name: Build and Deploy Jekyll Site
 
 on:
   push:
@@ -22,7 +22,8 @@ jobs:
 
       - name: Remove problematic files
         run: |
-          find . -name "README.md" -path "*/node_modules/*balanced-match*" -delete
+          rm -rf ./login-backend/node_modules/balanced-match/README.md
+          rm -rf ./node_modules
 
       - name: Install dependencies
         run: |
@@ -36,4 +37,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./_site' > .github/workflows/pages.yml
