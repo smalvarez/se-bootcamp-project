@@ -36,13 +36,16 @@ function Part1() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://se-bootcamp-project.stevenalvarez.me/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -66,7 +69,7 @@ function Part1() {
           <h2>Part 1</h2>
           <div className="position-relative">
             <img
-              src="/images/img1.jpg"
+              src={process.env.PUBLIC_URL + "/images/img1.jpg"}
               className="img-fluid rounded"
               alt="Studio workspace"
             />

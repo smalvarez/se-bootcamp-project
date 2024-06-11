@@ -1,36 +1,69 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const SignUpForm = () => {
-  useEffect(() => {
-    const form = document.getElementById("signup-form");
+const SignUpForm = ({ show, handleClose }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    if (form) {
-      form.addEventListener("submit", handleFormSubmit);
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        "https://se-bootcamp-project.stevenalvarez.me/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-      return () => {
-        form.removeEventListener("submit", handleFormSubmit);
-      };
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      alert("Signup successful!");
+      handleClose();
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     }
-  }, []);
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    // Your form submission logic here
-    console.log("Form submitted");
   };
 
   return (
-    <form id="signup-form">
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Sign Up</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form onSubmit={handleSignUp}>
+          <Form.Group>
+            <Form.Control
+              type="email"
+              id="email"
+              placeholder="Email Address*"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              type="password"
+              id="password"
+              placeholder="Password*"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" block>
+            SIGN UP
+          </Button>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
 };
 
