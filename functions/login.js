@@ -1,31 +1,28 @@
-const fetch = require("node-fetch");
-
 exports.handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ message: "Method Not Allowed" }),
+    };
   }
 
-  const { email, password } = JSON.parse(event.body);
-
   try {
-    const response = await fetch(
-      "https://smalvarez.github.io/se-bootcamp-project/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      }
-    );
+    const { email, password } = JSON.parse(event.body);
 
-    if (!response.ok) {
-      const message = await response.json();
-      return { statusCode: response.status, body: JSON.stringify(message) };
+    if (!email || !password) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Email and password are required" }),
+      };
     }
 
-    const data = await response.json();
-    return { statusCode: 200, body: JSON.stringify(data) };
+    // Simulate login logic here
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "Login successful" }),
+    };
   } catch (error) {
-    console.error(error);
+    console.error("Error:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Internal Server Error" }),
