@@ -1,6 +1,6 @@
 // src/components/Signup.js
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Signup() {
@@ -11,7 +11,7 @@ function Signup() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "/api/signup", // This will be proxied to the Netlify function
+        "https://smalvarez.github.io/se-bootcamp-project/signup",
         {
           method: "POST",
           headers: {
@@ -25,6 +25,7 @@ function Signup() {
 
       if (response.ok) {
         alert("Signup successful");
+        // Redirect or close modal
       } else {
         alert(data.message);
       }

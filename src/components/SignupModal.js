@@ -1,24 +1,49 @@
-import React, { useState } from 'react';
-import Modal from 'react-bootstrap/Modal'; // Assuming you're using React Bootstrap
+// src/components/SignupModal.js
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function SignupModal({ show, onHide }) {
+function SignupModal({ show, onHide, type }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignupSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement your signup logic here (e.g., sending data to an API)
-    console.log("Signup submitted:", email, password);
-    onHide(); // Close the modal after submission
+    const url =
+      type === "login"
+        ? "https://smalvarez.github.io/se-bootcamp-project/login"
+        : "https://smalvarez.github.io/se-bootcamp-project/signup";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(`${type.charAt(0).toUpperCase() + type.slice(1)} successful`);
+        localStorage.setItem("token", data.token);
+        onHide();
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Sign Up</Modal.Title>
+        <Modal.Title>{type === "login" ? "Login" : "Sign Up"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSignupSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Control
               type="email"
@@ -36,7 +61,7 @@ function SignupModal({ show, onHide }) {
             />
           </Form.Group>
           <Button variant="primary" type="submit" block>
-            SIGN UP
+            {type === "login" ? "LOGIN" : "SIGN UP"}
           </Button>
         </Form>
       </Modal.Body>
