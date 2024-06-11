@@ -1,15 +1,18 @@
-name: GitHub Pages
+name: Build and Deploy Jekyll Site
 
 on:
   push:
     branches:
       - main  # Change this to your default branch
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Ruby
@@ -18,10 +21,12 @@ jobs:
           ruby-version: 2.7
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          gem install jekyll bundler
+          bundle install
 
       - name: Build site
-        run: bundle exec jekyll build
+        run: bundle exec jekyll build --config _config.yml --future --drafts
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
