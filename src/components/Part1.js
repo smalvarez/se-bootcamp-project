@@ -76,10 +76,19 @@ function Part1() {
             <div className="text-studio">STUDIO</div>
             <div className="text-work-hard">WE WORK HARD, WE PLAY HARD</div>
             <div className="button-container">
-              <Button className="mr-2" onClick={() => openModal("loginModal")}>
+              <Button
+                variant="primary"
+                className="mr-2"
+                onClick={() => openModal("loginModal")}
+              >
                 Login
               </Button>
-              <Button onClick={() => openModal("signUpModal")}>Sign Up</Button>
+              <Button
+                variant="secondary"
+                onClick={() => openModal("signUpModal")}
+              >
+                Sign Up
+              </Button>
               <Dropdown show={modalState.navMenuVisible} onToggle={toggleMenu}>
                 <Dropdown.Toggle variant="secondary" id="burgerButton">
                   ☰
