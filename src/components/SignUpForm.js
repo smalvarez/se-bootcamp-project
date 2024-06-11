@@ -1,42 +1,35 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const SignUpForm = ({ show, handleClose }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://se-bootcamp-project.stevenalvarez.me/signup.html', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://se-bootcamp-project.stevenalvarez.me/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const result = await response.json();
-      console.log(result);
+
+      const data = await response.json();
+      alert("Signup successful!");
       handleClose();
-      // Open a new window with signup.html upon successful sign-up
-      window.open('https://se-bootcamp-project.stevenalvarez.me/signup.html', '_blank');
     } catch (error) {
-      console.error('There was an error with the sign-up request:', error);
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 
@@ -46,49 +39,27 @@ const SignUpForm = ({ show, handleClose }) => {
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Control
-              type="text"
-              placeholder="First Name"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+        <Form onSubmit={handleSignUp}>
           <Form.Group>
             <Form.Control
               type="email"
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
+              id="email"
+              placeholder="Email Address*"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
             <Form.Control
               type="password"
-              placeholder="Password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
+              id="password"
+              placeholder="Password*"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
           <Button variant="primary" type="submit" block>
-            Sign Up
+            SIGN UP
           </Button>
         </Form>
       </Modal.Body>

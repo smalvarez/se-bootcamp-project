@@ -1,70 +1,137 @@
-// src/components/Part1.js
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import { BrowserRouter as Router } from "react-router-dom";
-import SignupModal from "./SignupModal";
+import { Modal, Button, Form, Dropdown } from "react-bootstrap";
+import SignUpForm from "./SignUpForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css";
 
 function Part1() {
-  const [modalState, setModalState] = useState({ currentModal: null });
+  const [modalState, setModalState] = useState({
+    currentModal: null,
+    navMenuVisible: false,
+  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const toggleMenu = () => {
+    setModalState((prevState) => ({
+      ...prevState,
+      navMenuVisible: !prevState.navMenuVisible,
+    }));
+  };
 
   const openModal = (modalId) => {
-    setModalState({ currentModal: modalId });
+    setModalState((prevState) => ({
+      ...prevState,
+      currentModal: modalId,
+    }));
   };
 
   const closeModal = () => {
-    setModalState({ currentModal: null });
+    setModalState((prevState) => ({
+      ...prevState,
+      currentModal: null,
+    }));
   };
 
-  const openSignupWindow = () => {
-    const width = 500;
-    const height = 600;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-    window.open(
-      "/signup.html",
-      "Signup",
-      `width=${width},height=${height},top=${top},left=${left}`
-    );
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        "https://se-bootcamp-project.stevenalvarez.me/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        alert("Login successful");
+        closeModal();
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
-    <Router>
-      <div>
-        <main className="container my-4">
-          <section id="part1">
-            <h2>Part 1</h2>
-            <div className="position-relative">
-              <img
-                src="/images/img1.jpg"
-                className="img-fluid rounded"
-                alt="Studio workspace"
-              />
-              <div className="text-studio">STUDIO</div>
-              <div className="text-work-hard">WE WORK HARD, WE PLAY HARD</div>
-              <div className="button-container">
-                <Button
-                  className="mr-2"
-                  onClick={() => openModal("loginModal")}
-                >
-                  Login
-                </Button>
-                <Button className="mr-2" onClick={openSignupWindow}>
-                  Sign Up
-                </Button>
-              </div>
-            </div>
-          </section>
-        </main>
+    <div>
+      <main className="container my-4">
+        <section id="part1">
+          <h2>Part 1</h2>
+          <div className="position-relative">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img1.jpg"}
+              className="img-fluid rounded"
+              alt="Studio workspace"
+            />
+            <div className="text-studio">STUDIO</div>
+            <div className="text-work-hard">WE WORK HARD, WE PLAY HARD</div>
+            <div className="button-container">
+              <Button className="mr-2" onClick={() => openModal("loginModal")}>
+                Login
+              </Button>
+              <Button onClick={() => openModal("signUpModal")}>Sign Up</Button>
+              <Dropdown show={modalState.navMenuVisible} onToggle={toggleMenu}>
+                <Dropdown.Toggle variant="secondary" id="burgerButton">
+                  ☰
+                </Dropdown.Toggle>
 
-        <SignupModal
-          show={modalState.currentModal === "loginModal"}
-          onHide={closeModal}
-          type="login"
-        />
-      </div>
-    </Router>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#part1">Part 1</Dropdown.Item>
+                  <Dropdown.Item href="#part2">Part 2</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Modal
+        show={modalState.currentModal === "loginModal"}
+        onHide={closeModal}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleLogin}>
+            <Form.Group>
+              <Form.Control
+                type="email"
+                placeholder="Email Address*"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                type="password"
+                placeholder="Password*"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" block>
+              LOGIN
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+
+      <SignUpForm
+        show={modalState.currentModal === "signUpModal"}
+        handleClose={closeModal}
+      />
+    </div>
   );
 }
 
