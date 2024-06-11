@@ -1,7 +1,7 @@
 // src/components/Part1.js
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css";
