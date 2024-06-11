@@ -23,7 +23,17 @@ jobs:
       - name: Remove problematic files
         run: |
           rm -rf ./login-backend/node_modules/balanced-match/README.md
-          rm -rf ./node_modules
+          rm -rf ./login-backend/node_modules/@mapbox/node-pre-gyp/CHANGELOG.md
+          rm -rf ./login-backend/node_modules/accepts/HISTORY.md
+          rm -rf ./login-backend/node_modules/aproba/CHANGELOG.md
+          rm -rf ./login-backend/node_modules/bcrypt/CHANGELOG.md
+          rm -rf ./login-backend/node_modules/bcrypt/SECURITY.md
+          rm -rf ./login-backend/node_modules/body-parser/HISTORY.md
+          rm -rf ./login-backend/node_modules/body-parser/SECURITY.md
+          rm -rf ./login-backend/node_modules/bytes/History.md
+          rm -rf ./login-backend/node_modules/call-bind/CHANGELOG.md
+          find ./node_modules -type f -name "*.md" -delete
+          find ./login-backend/node_modules -type f -name "*.md" -delete
 
       - name: Install dependencies
         run: |
