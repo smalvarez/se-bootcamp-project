@@ -35,14 +35,13 @@ function SignUpForm({ show, handleClose }) {
         }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Signup successful");
-        handleClose();
-      } else {
-        alert(data.message);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
+
+      alert("Signup successful");
+      handleClose();
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred. Please try again.");
