@@ -13,9 +13,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.0"
+          ruby-version: "2.7" # Ensure this is a version available on setup-ruby
 
       - name: Install dependencies
         run: |
