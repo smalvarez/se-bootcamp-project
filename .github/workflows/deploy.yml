@@ -3,34 +3,38 @@ name: Build and Deploy Jekyll Site
 on:
   push:
     branches:
+      - main # Change this to your default branch
+  pull_request:
+    branches:
       - main
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "2.7"
+          ruby-version: 3.0.0
 
-      - name: Install Bundler
-        run: gem install bundler
+      - name: Remove problematic files
+        run: |
+          find ./node_modules -type f -name "*.md" -delete
+          find ./login-backend/node_modules -type f -name "*.md" -delete
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          gem install bundler
+          bundle install
 
-      - name: Build the site
-        run: bundle exec jekyll build
+      - name: Build site
+        run: bundle exec jekyll build --config _config.yml --future --drafts
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAT }}
           publish_dir: ./_site
-
-    permissions:
-      contents: write
