@@ -1,8 +1,8 @@
 // src/components/Part1.js
-import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Signup from './Signup';
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Signup from "./Signup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css";
 
@@ -63,7 +63,10 @@ function Part1() {
               <div className="text-studio">STUDIO</div>
               <div className="text-work-hard">WE WORK HARD, WE PLAY HARD</div>
               <div className="button-container">
-                <Button className="mr-2" onClick={() => openModal("loginModal")}>
+                <Button
+                  className="mr-2"
+                  onClick={() => openModal("loginModal")}
+                >
                   Login
                 </Button>
                 <Link to="/signup">
