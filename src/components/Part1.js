@@ -36,16 +36,13 @@ function Part1() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "https://se-bootcamp-project.stevenalvarez.me/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch("/.netlify/functions/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await response.json();
 

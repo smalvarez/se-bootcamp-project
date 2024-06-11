@@ -24,19 +24,16 @@ function SignUpForm({ show, handleClose }) {
     }
 
     try {
-      const response = await fetch(
-        "https://se-bootcamp-project.stevenalvarez.me/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-        }
-      );
+      const response = await fetch("/.netlify/functions/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
 
       const data = await response.json();
 

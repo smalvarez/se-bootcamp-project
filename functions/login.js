@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
 
   try {
     const response = await fetch(
-      "https://smalvarez.github.io/se-bootcamp-project/signup",
+      "https://smalvarez.github.io/se-bootcamp-project/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
