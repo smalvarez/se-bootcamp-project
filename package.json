@@ -1,6 +1,7 @@
 {
   "name": "se-bootcamp-project",
   "version": "1.0.0",
+  "homepage": "https://smalvarez.github.io/se-bootcamp-project",
   "scripts": {
     "start": "pm2 start server/app.js --name 'se-bootcamp-project'",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
@@ -49,6 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://smalvarez.github.io/se-bootcamp-project/"
+  }
 }
