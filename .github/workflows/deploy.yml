@@ -20,12 +20,20 @@ jobs:
         with:
           ruby-version: 3.0.0
 
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # Change this to your desired Node.js version
+
+      - name: Install dependencies
+        run: npm install # Or use yarn install if you're using Yarn
+
       - name: Remove problematic files
         run: |
           find ./node_modules -type f -name "*.md" -delete
           find ./login-backend/node_modules -type f -name "*.md" -delete
 
-      - name: Install dependencies
+      - name: Install Ruby dependencies
         run: |
           gem install bundler
           bundle install
