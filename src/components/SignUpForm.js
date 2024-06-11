@@ -9,16 +9,13 @@ const SignUpForm = ({ show, handleClose }) => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "https://se-bootcamp-project.stevenalvarez.me/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
