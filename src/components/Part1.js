@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Dropdown } from "react-bootstrap";
-import SignUpForm from "../js/SignUpForm";
+import SignUpForm from "./SignUpForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css";
 
