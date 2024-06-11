@@ -1,8 +1,7 @@
 // src/components/Part1.js
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Signup from "./Signup";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignupModal from "./SignupModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css";
@@ -64,10 +63,6 @@ function Part1() {
           onHide={closeModal}
           type="login"
         />
-
-        <Routes>
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
       </div>
     </Router>
   );
