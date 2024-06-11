@@ -8,8 +8,6 @@ exports.handler = async (event, context) => {
 
   const { email, password } = JSON.parse(event.body);
 
-  // Simulate user signup logic
-  // In a real-world scenario, you'd interact with a database here
   if (!email || !password) {
     return {
       statusCode: 400,
@@ -17,6 +15,7 @@ exports.handler = async (event, context) => {
     };
   }
 
+  // Simulate user signup logic
   return {
     statusCode: 200,
     body: JSON.stringify({ message: "Signup successful" }),
