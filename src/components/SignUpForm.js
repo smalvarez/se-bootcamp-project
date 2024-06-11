@@ -1,30 +1,37 @@
-// src/js/SignUpForm.js
+import React, { useEffect } from "react";
 
-document
-  .querySelector("form")
-  .addEventListener("submit", async function onSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+const SignUpForm = () => {
+  useEffect(() => {
+    const form = document.getElementById("signup-form");
 
-    try {
-      const response = await fetch(
-        "https://se-bootcamp-project.stevenalvarez.me/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(Object.fromEntries(formData)),
-        }
-      );
+    if (form) {
+      form.addEventListener("submit", handleFormSubmit);
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      console.log("Success:", data);
-    } catch (error) {
-      console.error("Error:", error);
+      return () => {
+        form.removeEventListener("submit", handleFormSubmit);
+      };
     }
-  });
+  }, []);
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // Your form submission logic here
+    console.log("Form submitted");
+  };
+
+  return (
+    <form id="signup-form">
+      <div>
+        <label htmlFor="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+  );
+};
+
+export default SignUpForm;
