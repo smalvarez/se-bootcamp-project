@@ -6,7 +6,6 @@ import App from "./App";
 import SignupPage from "./components/SignupPage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./mutationObserver";
 
 const Root = () => (
   <Router>
