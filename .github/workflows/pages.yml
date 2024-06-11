@@ -3,7 +3,7 @@ name: Build and Deploy Jekyll Site
 on:
   push:
     branches:
-      - main  # Change this to your default branch
+      - main # Change this to your default branch
   pull_request:
     branches:
       - main
@@ -18,7 +18,11 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.0.0
+
+      - name: Remove problematic files
+        run: |
+          find . -name "README.md" -path "*/node_modules/*balanced-match*" -delete
 
       - name: Install dependencies
         run: |
