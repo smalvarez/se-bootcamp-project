@@ -1,4 +1,3 @@
-// src/index.js
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -22,8 +21,3 @@ ReactDOM.render(
   </ErrorBoundary>,
   document.getElementById("root")
 );
-
-// Render the signup page if on signup.html
-if (document.getElementById("signup-root")) {
-  ReactDOM.render(<SignupPage />, document.getElementById("signup-root"));
-}
