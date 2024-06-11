@@ -37,7 +37,7 @@ function Part1() {
             <h2>Part 1</h2>
             <div className="position-relative">
               <img
-                src={process.env.PUBLIC_URL + "/images/img1.jpg"}
+                src="/images/img1.jpg"
                 className="img-fluid rounded"
                 alt="Studio workspace"
               />
