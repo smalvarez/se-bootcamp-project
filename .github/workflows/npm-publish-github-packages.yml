@@ -20,6 +20,10 @@ jobs:
         with:
           ruby-version: 3.0.0
 
+      - name: Remove problematic files
+        run: |
+          rm -rf login-backend/node_modules/balanced-match/README.md
+
       - name: Install dependencies
         run: |
           gem install jekyll bundler
