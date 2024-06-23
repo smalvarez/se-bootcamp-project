@@ -10,31 +10,6 @@ object-assign
 	http://jedwatson.github.io/classnames
 */
 
-<<<<<<<< HEAD:static/js/2.27148162.chunk.js.LICENSE.txt
-========
-/**
- * @remix-run/router v1.16.1
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-
-/**
- * React Router v6.23.1
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-
->>>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910:static/js/main.02a09cf8.js.LICENSE.txt
 /** @license React v0.20.2
  * scheduler.production.min.js
  *

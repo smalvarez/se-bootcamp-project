@@ -10,8 +10,6 @@ object-assign
 	http://jedwatson.github.io/classnames
 */
 
-<<<<<<<< HEAD:static/js/2.27148162.chunk.js.LICENSE.txt
-========
 /**
  * @remix-run/router v1.16.1
  *
@@ -34,7 +32,6 @@ object-assign
  * @license MIT
  */
 
->>>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910:static/js/main.02a09cf8.js.LICENSE.txt
 /** @license React v0.20.2
  * scheduler.production.min.js
  *
