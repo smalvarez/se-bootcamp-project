@@ -53,7 +53,7 @@ const SignUpForm = ({ show, handleClose }) => {
         return;
       }
 
-      alert("Signup successful");
+      alert("Signup successful!");
       handleClose();
     } catch (error) {
       console.error("Error:", error);
