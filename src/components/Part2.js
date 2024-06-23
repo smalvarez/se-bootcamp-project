@@ -93,139 +93,128 @@ function Part2() {
           <h3>Simplified project development</h3>
           <h3>for a complex world</h3>
         </div>
-        <div className="row">
-          <div className="col-md-4">
-            <div className="card">
-              <img
-                src={process.env.PUBLIC_URL + "/images/img2.bmp"}
-                className="card-img-top"
-                alt="Residential Solutions"
-              />
-              <div className="card-body text-center">
-                <h4 className="card-title">Residential Solutions</h4>
-                <p className="card-text">
-                  Save on your electricity bills, reduce your carbon footprint
-                  and increase the value of your home.
-                </p>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => openModal("modal1")}
-                >
-                  More
-                </Button>
-              </div>
+        <div className="card-deck">
+          <div className="card">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img2.bmp"}
+              className="card-img-top"
+              alt="Residential Solutions"
+            />
+            <div className="card-body text-center">
+              <h4 className="card-title">Residential Solutions</h4>
+              <p className="card-text">
+                Save on your electricity bills, reduce your carbon footprint and
+                increase the value of your home.
+              </p>
+              <Button
+                variant="outline-primary"
+                onClick={() => openModal("modal1")}
+              >
+                More
+              </Button>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card">
-              <img
-                src={process.env.PUBLIC_URL + "/images/img3.bmp"}
-                className="card-img-top"
-                alt="Utility-Scale Solutions"
-              />
-              <div className="card-body text-center">
-                <h4 className="card-title">Utility-Scale Solutions</h4>
-                <p className="card-text">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt.
-                </p>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => openModal("modal2")}
-                >
-                  More
-                </Button>
-              </div>
+          <div className="card">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img3.bmp"}
+              className="card-img-top"
+              alt="Utility-Scale Solutions"
+            />
+            <div className="card-body text-center">
+              <h4 className="card-title">Utility-Scale Solutions</h4>
+              <p className="card-text">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt.
+              </p>
+              <Button
+                variant="outline-primary"
+                onClick={() => openModal("modal2")}
+              >
+                More
+              </Button>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card">
-              <img
-                src={process.env.PUBLIC_URL + "/images/img4.bmp"}
-                className="card-img-top"
-                alt="Commercial Solutions"
-              />
-              <div className="card-body text-center">
-                <h4 className="card-title">Commercial Solutions</h4>
-                <p className="card-text">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt.
-                </p>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => openModal("modal3")}
-                >
-                  More
-                </Button>
-              </div>
+          <div className="card">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img4.bmp"}
+              className="card-img-top"
+              alt="Commercial Solutions"
+            />
+            <div className="card-body text-center">
+              <h4 className="card-title">Commercial Solutions</h4>
+              <p className="card-text">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt.
+              </p>
+              <Button
+                variant="outline-primary"
+                onClick={() => openModal("modal3")}
+              >
+                More
+              </Button>
             </div>
           </div>
         </div>
-        <div className="row mt-4">
-          <div className="col-md-4">
-            <div className="card">
-              <img
-                src={process.env.PUBLIC_URL + "/images/img5.bmp"}
-                className="card-img-top"
-                alt="New Residential Solutions"
-              />
-              <div className="card-body text-center">
-                <h4 className="card-title">New Residential Solutions</h4>
-                <p className="card-text">
-                  Innovative solutions for modern homes, enhancing energy
-                  efficiency.
-                </p>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => openModal("modal4")}
-                >
-                  More
-                </Button>
-              </div>
+
+        <div className="card-deck mt-4">
+          <div className="card">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img5.bmp"}
+              className="card-img-top"
+              alt="New Residential Solutions"
+            />
+            <div className="card-body text-center">
+              <h4 className="card-title">New Residential Solutions</h4>
+              <p className="card-text">
+                Innovative solutions for modern homes, enhancing energy
+                efficiency.
+              </p>
+              <Button
+                variant="outline-primary"
+                onClick={() => openModal("modal4")}
+              >
+                More
+              </Button>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card">
-              <img
-                src={process.env.PUBLIC_URL + "/images/img6.bmp"}
-                className="card-img-top"
-                alt="New Utility-Scale Solutions"
-              />
-              <div className="card-body text-center">
-                <h4 className="card-title">New Utility-Scale Solutions</h4>
-                <p className="card-text">
-                  Advanced technology for large-scale projects, ensuring
-                  reliability.
-                </p>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => openModal("modal5")}
-                >
-                  More
-                </Button>
-              </div>
+          <div className="card">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img6.bmp"}
+              className="card-img-top"
+              alt="New Utility-Scale Solutions"
+            />
+            <div className="card-body text-center">
+              <h4 className="card-title">New Utility-Scale Solutions</h4>
+              <p className="card-text">
+                Advanced technology for large-scale projects, ensuring
+                reliability.
+              </p>
+              <Button
+                variant="outline-primary"
+                onClick={() => openModal("modal5")}
+              >
+                More
+              </Button>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card">
-              <img
-                src={process.env.PUBLIC_URL + "/images/img7.bmp"}
-                className="card-img-top"
-                alt="New Commercial Solutions"
-              />
-              <div className="card-body text-center">
-                <h4 className="card-title">New Commercial Solutions</h4>
-                <p className="card-text">
-                  Customizable options for businesses, maximizing operational
-                  efficiency.
-                </p>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => openModal("modal6")}
-                >
-                  More
-                </Button>
-              </div>
+          <div className="card">
+            <img
+              src={process.env.PUBLIC_URL + "/images/img7.bmp"}
+              className="card-img-top"
+              alt="New Commercial Solutions"
+            />
+            <div className="card-body text-center">
+              <h4 className="card-title">New Commercial Solutions</h4>
+              <p className="card-text">
+                Customizable options for businesses, maximizing operational
+                efficiency.
+              </p>
+              <Button
+                variant="outline-primary"
+                onClick={() => openModal("modal6")}
+              >
+                More
+              </Button>
             </div>
           </div>
         </div>

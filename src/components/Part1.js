@@ -144,6 +144,7 @@ function Part1({ setIsLoggedIn, isLoggedIn }) {
                   <Dropdown.Toggle variant="secondary" id="burgerButton">
                     ☰
                   </Dropdown.Toggle>
+
                   <Dropdown.Menu>
                     <Dropdown.Item href="#part1">Part 1</Dropdown.Item>
                     <Dropdown.Item href="#part2">Part 2</Dropdown.Item>

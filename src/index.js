@@ -1,23 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import App from "./App.js";
 import "./index.css";
-import App from "./App";
-import SignupPage from "./components/SignupPage";
-import ErrorBoundary from "./components/ErrorBoundary";
-
-const Root = () => (
-  <Router>
-    <Routes>
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="*" element={<App />} />
-    </Routes>
-  </Router>
-);
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
-  <ErrorBoundary>
-    <Root />
-  </ErrorBoundary>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById("root")
 );
