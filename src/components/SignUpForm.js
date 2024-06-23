@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-<<<<<<< HEAD
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const SignUpForm = ({ show, handleClose }) => {
@@ -20,43 +19,17 @@ const SignUpForm = ({ show, handleClose }) => {
     }
 
     if (password !== confirmPassword) {
-=======
-
-function SignUpForm({ show, handleClose }) {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
       alert("Passwords do not match!");
       return;
     }
 
     try {
-<<<<<<< HEAD
       const response = await fetch("http://localhost:3001/signup", {
-=======
-      const response = await fetch("/.netlify/functions/signup", {
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-<<<<<<< HEAD
           first_name: firstName,
           last_name: lastName,
           email,
@@ -80,20 +53,7 @@ function SignUpForm({ show, handleClose }) {
         return;
       }
 
-      alert("Signup successful!");
-=======
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
-      }
-
       alert("Signup successful");
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
       handleClose();
     } catch (error) {
       console.error("Error:", error);
@@ -107,7 +67,6 @@ function SignUpForm({ show, handleClose }) {
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-<<<<<<< HEAD
         <Form onSubmit={handleSignUp}>
           <Form.Group controlId="formFirstName">
             <Form.Control
@@ -157,47 +116,11 @@ function SignUpForm({ show, handleClose }) {
           {error && <p style={{ color: "red" }}>{error}</p>}
           <Button variant="primary" type="submit" block={true}>
             Sign Up
-=======
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Email Address*"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password*"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password*"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Button variant="secondary" type="submit" block>
-            SIGN UP
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
           </Button>
         </Form>
       </Modal.Body>
     </Modal>
   );
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
 
 export default SignUpForm;

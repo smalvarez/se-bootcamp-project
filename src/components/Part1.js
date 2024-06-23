@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Dropdown } from "react-bootstrap";
 import SignUpForm from "./SignUpForm";
-<<<<<<< HEAD
 import ProfileSettings from "./ProfileSettings"; // Import the ProfileSettings component
-=======
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/part2.css";
 
@@ -41,11 +38,7 @@ function Part1({ setIsLoggedIn, isLoggedIn }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
       const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-=======
-      const response = await fetch("/.netlify/functions/login", {
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,7 +124,6 @@ function Part1({ setIsLoggedIn, isLoggedIn }) {
             <div className="text-studio">STUDIO</div>
             <div className="text-work-hard">WE WORK HARD, WE PLAY HARD</div>
             <div className="button-container">
-<<<<<<< HEAD
               {!isLoggedIn ? (
                 <>
                   <Button
@@ -152,26 +144,6 @@ function Part1({ setIsLoggedIn, isLoggedIn }) {
                   <Dropdown.Toggle variant="secondary" id="burgerButton">
                     ☰
                   </Dropdown.Toggle>
-=======
-              <Button
-                variant="primary"
-                className="mr-2"
-                onClick={() => openModal("loginModal")}
-              >
-                Login
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => openModal("signUpModal")}
-              >
-                Sign Up
-              </Button>
-              <Dropdown show={modalState.navMenuVisible} onToggle={toggleMenu}>
-                <Dropdown.Toggle variant="secondary" id="burgerButton">
-                  ☰
-                </Dropdown.Toggle>
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
-
                   <Dropdown.Menu>
                     <Dropdown.Item href="#part1">Part 1</Dropdown.Item>
                     <Dropdown.Item href="#part2">Part 2</Dropdown.Item>
@@ -232,7 +204,6 @@ function Part1({ setIsLoggedIn, isLoggedIn }) {
         show={modalState.currentModal === "signUpModal"}
         handleClose={closeModal}
       />
-<<<<<<< HEAD
 
       <ProfileSettings
         show={modalState.currentModal === "profileSettingsModal"}
@@ -240,8 +211,6 @@ function Part1({ setIsLoggedIn, isLoggedIn }) {
         user={user}
         setIsLoggedIn={setIsLoggedIn} // Pass setIsLoggedIn to ProfileSettings
       />
-=======
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
     </div>
   );
 }
