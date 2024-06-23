@@ -1,0 +1,48 @@
+name: Build and Deploy Jekyll Site
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # Change this to your desired Node.js version
+
+      - name: Install dependencies
+        run: npm install # Or use yarn install if you're using Yarn
+
+      - name: Remove problematic files
+        run: |
+          find ./node_modules -type f -name "*.md" -delete
+          find ./login-backend/node_modules -type f -name "*.md" -delete
+
+      - name: Install Ruby dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build site
+        run: bundle exec jekyll build --config _config.yml --future --drafts
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          publish_dir: ./_site
