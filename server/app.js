@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const express = require("express");
@@ -165,46 +164,4 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3002;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-=======
-// server.js
-const express = require('express');
-const mysql = require('mysql');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
-
-const db = mysql.createConnection({
-  host: 'your-hostinger-database-host',
-  user: 'u688440464_sqladmin',
-  password: 'Dbpassword9!',
-  database: 'u688440464_login_db'
-});
-
-db.connect(err => {
-  if (err) {
-    console.error('Database connection error:', err);
-  } else {
-    console.log('Connected to the database.');
-  }
-});
-
-app.post('/signup', (req, res) => {
-  const { email, password } = req.body;
-  const query = 'INSERT INTO users (email, password) VALUES (?, ?)';
-  db.query(query, [email, password], (err, result) => {
-    if (err) {
-      res.status(500).send({ message: 'Database error', error: err });
-    } else {
-      res.status(200).send({ message: 'User registered successfully' });
-    }
-  });
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
 });
