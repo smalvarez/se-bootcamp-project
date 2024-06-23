@@ -1,9 +1,5 @@
 CREATE TABLE IF NOT EXISTS login_table (
-<<<<<<< HEAD
     id SERIAL PRIMARY KEY,
-=======
-    id INT AUTO_INCREMENT PRIMARY KEY,
->>>>>>> 48106ecac0ed92470f345a48b55a3161279e0910
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
